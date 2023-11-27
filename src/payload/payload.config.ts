@@ -1,5 +1,5 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack' // bundler-import
-import { mongooseAdapter } from '@payloadcms/db-mongodb' // database-adapter-import
+import { postgresAdapter } from '@payloadcms/db-postgres' // database-adapter-import
 import type { GenerateTitle } from '@payloadcms/plugin-seo/types'
 
 import { payloadCloud } from '@payloadcms/plugin-cloud'
@@ -85,8 +85,9 @@ export default buildConfig({
   // database-adapter-config-start
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
-  db: mongooseAdapter({
-    url: process.env.DATABASE_URI,
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URI,
   }),
   plugins: [
     // formBuilder({}),
