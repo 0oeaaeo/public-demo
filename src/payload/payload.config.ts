@@ -87,7 +87,8 @@ export default buildConfig({
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI,
+      connectionString: process.env.DATABASE_URI
+    }
   }),
   plugins: [
     // formBuilder({}),
